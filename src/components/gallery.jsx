@@ -3,14 +3,21 @@ import Image from "./image";
 
 class Gallery extends Component {
   render() {
-    return this.props.images.map((image) => (
-      <Image
-        key={image.id}
-        url={image.url}
-        id={image.id}
-        onClick={this.props.onClick}
-      />
-    ));
+    return (
+      <React.Fragment>
+        {this.props.images.map((image) => (
+          <Image
+            key={image.id}
+            url={image.url}
+            id={image.id}
+            onClick={this.props.onClick}
+            onMouseOver={this.props.onMouseOver}
+            onMouseOut={this.props.onMouseOut}
+          />
+        ))}
+        <span id="tooltip">Click to Change Image</span>
+      </React.Fragment>
+    );
   }
 }
 
