@@ -41,3 +41,7 @@
 #tooltip {
   display: none;
 }
+
+img {
+  cursor: pointer;
+}
