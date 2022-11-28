@@ -4,15 +4,19 @@ class Image extends Component {
   state = {};
   render() {
     return (
-      <img
-        className="rounded m-3"
-        alt=""
-        key={this.props.id}
-        src={this.props.url + `?random=${this.props.id}`}
-        onClick={() => this.props.onClick(this.props)}
-        onMouseOver={this.props.onMouseOver}
-        onMouseOut={this.props.onMouseOut}
-      />
+      <div className="project-tile m-3">
+        <div className="image-container">
+          <img
+            alt=""
+            key={this.props.id}
+            src={this.props.url + `?random=${this.props.id}`}
+            onClick={() => this.props.onClick(this.props)}
+            onMouseOver={this.props.onMouseOver}
+            onMouseOut={this.props.onMouseOut}
+          />
+        </div>
+        <h3 class="image-title">Title</h3>
+      </div>
     );
   }
 }
