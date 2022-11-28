@@ -15,7 +15,6 @@ class Gallery extends Component {
             onMouseOut={this.props.onMouseOut}
           />
         ))}
-        <span id="tooltip">Click to Change Image</span>
       </React.Fragment>
     );
   }

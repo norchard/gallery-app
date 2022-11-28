@@ -11,32 +11,38 @@ class App extends Component {
   }
 
   handleMouseOver = () => {
-    const tooltip = document.getElementById("tooltip");
-    tooltip.style.display = "inline";
-    tooltip.style.position = "absolute";
-    tooltip.classList = "badge badge-info";
-    window.addEventListener("mousemove", (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      tooltip.style.left = `${x + 10}px`;
-      tooltip.style.top = `${y + 10}px`;
-    });
+    const cursor = document.getElementById("cursor");
+    cursor.classList = "hover";
+    // console.log("mousing over");
+    // const tooltip = document.getElementById("tooltip");
+    // tooltip.style.visibility = "visible";
   };
 
   handleMouseOut = () => {
-    const tooltip = document.getElementById("tooltip");
-    tooltip.style.display = "none";
+    const cursor = document.getElementById("cursor");
+    cursor.classList = "";
+    // const tooltip = document.getElementById("tooltip");
+    // tooltip.style.visibility = "hidden";
   };
 
   handleClick = (image) => {
     const { url, id } = image;
-    console.log(url, id);
     const images = [...this.state.images];
     images[id] = {
       id: id,
-      url: `https://picsum.photos/300?random=${Date.now()}`,
+      url: `${url.split("=")[0]}=${Date.now()}`,
     };
     this.setState({ images });
+  };
+
+  handleCursor = () => {
+    const cursor = document.getElementById("cursor");
+    window.addEventListener("mousemove", (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      cursor.style.left = `${x}px`;
+      cursor.style.top = `${y}px`;
+    });
   };
 
   generateImages = (size) => {
@@ -51,10 +57,15 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
-      <div className="App">
+      <div className="App" onMouseMove={this.handleCursor}>
+        <span id="cursor">
+          <span id="pin"></span>
+        </span>
         <h1 className="display-1">Gallery</h1>
+        <h5 id="tooltip">
+          <span className="badge badge-info">Click to Change Image</span>
+        </h5>
         <Gallery
           images={this.state.images}
           onClick={this.handleClick}
