@@ -29,7 +29,7 @@ class Menu extends Component {
               {" "}
               <ul id="menu-list" className="display-1">
                 {this.state.menuItems.map((item, i) => {
-                  return <MenuItem name={item} index={i} />;
+                  return <MenuItem key={i} name={item} index={i} />;
                 })}
               </ul>
             </div>

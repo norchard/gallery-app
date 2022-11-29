@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Gallery from "./components/gallery";
-import Logo from "./components/logo";
-import Menu from "./components/menu.jsx";
+import Header from "./components/header";
 
 class App extends Component {
   constructor() {
@@ -91,7 +90,6 @@ class App extends Component {
       menu.style.opacity = 100;
     }, 300);
     window.removeEventListener("scroll");
-    console.log("open");
   };
 
   handleMenuClose = () => {
@@ -102,14 +100,12 @@ class App extends Component {
     setTimeout(() => {
       menu.style.display = "none";
     }, 300);
-    console.log("close");
   };
 
   componentDidMount() {
     const links = document.getElementsByTagName("a");
     const menuToggle = document.getElementsByClassName("toggle-menu");
     const menuItem = document.getElementsByClassName("menu-link");
-    console.log("menuToggle");
     // console.log(links);
     for (let toggle of menuToggle) {
       toggle.addEventListener("mouseover", this.handleMouseOver);
@@ -162,17 +158,11 @@ class App extends Component {
 
     return (
       <div className="App" onMouseMove={this.handleCursor}>
-        <span id="cursor"></span>
-        <span id="circle"></span>
-        <Menu onOpen={this.handleMenuOpen} onClose={this.handleMenuClose} />
-        <Logo />
-        <a
-          id="toggle-background"
-          onClick={this.toggleBackground}
-          className="button gradient"
-        >
-          <div id="toggle-icon"></div>
-        </a>
+        <Header
+          onToggleBackground={this.toggleBackground}
+          onMenuClose={this.handleMenuClose}
+          onMenuOpen={this.handleMenuOpen}
+        />
         {/* <h5 id="tooltip">
           <span className="badge-pill badge-info">Click to Change Image</span>
         </h5> */}
