@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Gallery from "./components/gallery";
+import Logo from "./components/logo";
+import Menu from "./components/menu.jsx";
 
 class App extends Component {
   constructor() {
@@ -61,8 +63,14 @@ class App extends Component {
 
   toggleBackground = () => {
     const app = document.getElementsByClassName("App")[0];
-    if (app.classList.contains("white")) app.classList.remove("white");
-    else app.classList.add("white");
+    const toggleButton = document.getElementById("toggle-background");
+    if (app.classList.contains("white")) {
+      app.classList.remove("white");
+      toggleButton.classList.remove("white");
+    } else {
+      app.classList.add("white");
+      toggleButton.classList.add("white");
+    }
   };
 
   generateImages = (size) => {
@@ -76,70 +84,140 @@ class App extends Component {
     return images;
   };
 
+  handleMenuOpen = () => {
+    const menu = document.getElementById("menu-body");
+    menu.style.display = "block";
+    setTimeout(() => {
+      menu.style.opacity = 100;
+    }, 300);
+    window.removeEventListener("scroll");
+    console.log("open");
+  };
+
+  handleMenuClose = () => {
+    const menu = document.getElementById("menu-body");
+    // menu.style.display = "none";
+
+    menu.style.opacity = 0;
+    setTimeout(() => {
+      menu.style.display = "none";
+    }, 300);
+    console.log("close");
+  };
+
   componentDidMount() {
-    const buttons = document.getElementsByClassName("button");
-    console.log(buttons);
-    for (let button of buttons) {
-      button.addEventListener("mouseover", this.handleMouseOver);
-      button.addEventListener("mouseout", this.handleMouseOut);
+    const links = document.getElementsByTagName("a");
+    const menuToggle = document.getElementsByClassName("toggle-menu");
+    const menuItem = document.getElementsByClassName("menu-link");
+    console.log("menuToggle");
+    // console.log(links);
+    for (let toggle of menuToggle) {
+      toggle.addEventListener("mouseover", this.handleMouseOver);
+      toggle.addEventListener("mouseout", this.handleMouseOut);
+      // toggle.style.cursor = "pointer";
+    }
+    for (let item of menuItem) {
+      item.addEventListener("mouseover", this.handleMouseOver);
+      item.addEventListener("mouseout", this.handleMouseOut);
+      // item.style.cursor = "pointer";
+    }
+    for (let link of links) {
+      link.addEventListener("mouseover", this.handleMouseOver);
+      link.addEventListener("mouseout", this.handleMouseOut);
     }
   }
 
+  // handleDisappearing = () => {};
+
+  handleScroll = () => {
+    var lastScrollTop = 0;
+    window.addEventListener("scroll", () => {
+      const logo = document.getElementById("logo");
+      const toggleBackground = document.getElementById("toggle-background");
+      const menu = document.getElementById("open-menu");
+      if (lastScrollTop < window.scrollY) {
+        logo.classList.add("hidden");
+        toggleBackground.classList.add("hidden");
+        menu.classList.add("hidden");
+      } else {
+        logo.classList.remove("hidden");
+        toggleBackground.classList.remove("hidden");
+        menu.classList.remove("hidden");
+      }
+      lastScrollTop = window.scrollY;
+
+      //   const cta = document.getElementById("cta");
+      //   const rect = cta.getBoundingClientRect();
+      //   const triggerPoint = window.innerHeight - 100;
+      //   if (rect.top < triggerPoint) {
+      //     const app = document.getElementsByClassName("App")[0];
+      //     if (app.classList.contains("white")) app.classList.remove("white");
+      //     else app.classList.add("white");
+      //   }
+    });
+  };
+
   render() {
-    // window.addEventListener("scroll", () => {
-    //   const cta = document.getElementById("cta");
-    //   const rect = cta.getBoundingClientRect();
-    //   const triggerPoint = window.innerHeight - 100;
-    //   if (rect.top < triggerPoint) {
-    //     const app = document.getElementsByClassName("App")[0];
-    //     if (app.classList.contains("white")) app.classList.remove("white");
-    //     else app.classList.add("white");
-    //   }
-    // });
+    this.handleScroll();
 
     return (
       <div className="App" onMouseMove={this.handleCursor}>
         <span id="cursor"></span>
         <span id="circle"></span>
-        <h1 className="display-1">Gallery</h1>
+        <Menu onOpen={this.handleMenuOpen} onClose={this.handleMenuClose} />
+        <Logo />
+        <a
+          id="toggle-background"
+          onClick={this.toggleBackground}
+          className="button gradient"
+        >
+          <div id="toggle-icon"></div>
+        </a>
         {/* <h5 id="tooltip">
           <span className="badge-pill badge-info">Click to Change Image</span>
         </h5> */}
+        <div className="section">
+          <h3 className="intro display-3">
+            I am a front-end developer who enjoys re-creating work that I admire
+          </h3>
+        </div>
         <Gallery
           images={this.state.images}
           onClick={this.handleClick}
           onMouseOver={this.handleMouseOver}
           onMouseOut={this.handleMouseOut}
         />
-        <a onClick={this.toggleBackground} class="button gradient">
-          Toggle Background
-        </a>
-        <div id="cta" className="section">
-          <h1 className="display-1">Tell Me About You</h1>
-        </div>
         <footer>
-          <div class="row">
-            <div class="col-sm">
-              <a href="tel6094680473" class="button">
+          <div className="row">
+            <div className="col-sm">
+              <a href="tel:6094680473" className="button">
                 +1 (609) 468-0473
               </a>
             </div>
-            <div class="col-sm">
+            <div className="col-sm">
               <a
+                target="blank"
                 href="https://www.google.com/maps/place/Houston,+TX/"
-                class="button"
+                className="button"
               >
                 Houston, Texas
               </a>
             </div>
-            <div class="col-sm">
-              <a href="mailto:hello@immitationagency.com" class="button">
-                hello@immitationagency.com
+            <div className="col-sm">
+              <a href="mailto:hello@imitationstudio.com" className="button">
+                hello@imitationstudio.com
               </a>
             </div>
           </div>
           <p id="copyright">
-            2022 Immitation Agency: Credit Goes to Unicorn Agency
+            2022 Imitation Studio: Inspiration Credit Goes to &nbsp;
+            <a
+              id="reference"
+              target="blank"
+              href="https://whiteunicornagency.com/"
+            >
+              White Unicorn Agency
+            </a>
           </p>
         </footer>
       </div>

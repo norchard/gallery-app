@@ -1,12 +1,12 @@
+@import url("https://use.typekit.net/udm8cpf.css");
+
 .App {
-  padding-top: 100px;
   text-align: center;
   cursor: none;
   min-height: 100vh;
   background-color: #282c34;
   color: white;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: bely, serif;
   transition: 1s;
 }
 
@@ -45,14 +45,15 @@
   }
 }
 
-a {
-  all: unset;
-}
-
 img {
   cursor: pointer;
-  width: 100%;
+  /* width: 100%; */
   transition: 0.5s all ease-in-out;
+}
+
+a {
+  /* all: unset; */
+  cursor: pointer;
 }
 
 img:hover {
@@ -72,7 +73,7 @@ img:hover {
   margin-left: -22px;
   margin-top: -22px;
   transition: scale 0.4s ease-out;
-  z-index: 1;
+  z-index: 3;
   /* transform-origin: 50%, 50%; */
   /* transition: width 1s ease-in-out;
   transition: height 1s ease-in-out; */
@@ -109,6 +110,7 @@ img:hover {
   display: inline;
   position: fixed;
   pointer-events: none;
+  z-index: 3;
   /* top: 30%;
   right: 30%; */
   /* transition: all 13s ease-out; */
@@ -124,9 +126,10 @@ img:hover {
 }
 
 .button {
+  font-family: "Montserrat";
   margin: 20px;
-  padding: 20px 100px;
-  font-weight: 700;
+  padding: 20px 20px;
+  font-weight: 800;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -157,8 +160,7 @@ img:hover {
 }
 
 .section {
-  min-height: 80vh;
-  padding: 100px;
+  padding: 200px;
 }
 
 .App.white {
@@ -167,6 +169,7 @@ img:hover {
 }
 
 .image-title {
+  font-family: "Montserrat";
   text-align: left;
   padding-top: 10px;
   transform: translateY(20px);
@@ -192,7 +195,7 @@ footer {
   padding: 100px;
   background-color: white;
   color: black;
-  min-height: 50vh;
+  min-height: 20vh;
 }
 
 footer .button {
@@ -203,7 +206,6 @@ footer .button {
 .App.white footer {
   background-color: #282c34;
   color: white;
-  word-spacing: ;
 }
 
 .App.white footer .button {
@@ -212,4 +214,164 @@ footer .button {
 
 #copyright {
   padding: 50px;
+  font-family: Montserrat;
+}
+
+#logo {
+  max-width: 70px;
+  fill: white;
+  position: fixed;
+  top: 50px;
+  left: 40px;
+  transition: all 0.25s ease-in-out;
+  z-index: 2;
+}
+
+.App.white #logo {
+  fill: black;
+}
+
+.intro {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+#toggle-background {
+  padding: 10px;
+  position: fixed;
+  right: 40px;
+  bottom: 50px;
+  z-index: 1;
+  width: 100px;
+  height: 50px;
+}
+
+#toggle-icon {
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+  margin-left: 0px;
+}
+
+#toggle-background.white #toggle-icon {
+  margin-left: 45px;
+}
+
+.toggle-menu {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  position: fixed;
+  top: 60px;
+  right: 60px;
+  transition: all 0.25s ease-in-out;
+}
+
+#open-menu {
+  background-color: red;
+}
+
+#close-menu {
+  background-color: blue;
+}
+
+#menu-body {
+  background-color: #282c34;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: 0.5s;
+  display: none;
+  opacity: 0;
+}
+
+#menu-list {
+  padding-top: 10vh;
+  border-left: solid 3px black;
+  height: 100vh;
+}
+
+#menu-list li {
+  list-style: none;
+  text-align: left;
+}
+
+.App.white #menu-body {
+  background-color: white;
+  color: black;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#name {
+  position: fixed;
+  top: 85px;
+  left: 130px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+#name span {
+  font-weight: 100;
+}
+
+.stack-text {
+  display: block;
+  transition: transform 0.25s ease-in-out;
+
+  /* transform: translateY(-80px); */
+}
+
+.menu-item {
+  margin: 60px;
+  /* background-color: yellow; */
+  height: 80px;
+  line-height: 80px;
+  transition: transform 1s ease-in-out;
+  overflow: hidden;
+}
+
+li.menu-item:hover .stack-text {
+  transform: translateY(-80px);
+}
+
+.index {
+  position: absolute;
+  margin-left: -30px;
+  margin-top: -20px;
+  font-size: 22px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #575d69;
+  display: block;
+  letter-spacing: 2px;
+}
+
+.menu-item:hover .index {
+  background-image: linear-gradient(217deg, #d44c4c 10%, #5b63b9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu-link:hover {
+  text-decoration: none;
+  color: inherit;
 }

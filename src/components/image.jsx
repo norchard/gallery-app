@@ -15,7 +15,7 @@ class Image extends Component {
             onMouseOut={this.props.onMouseOut}
           />
         </div>
-        <h3 class="image-title">Title</h3>
+        <h3 className="image-title">Title</h3>
       </div>
     );
   }
